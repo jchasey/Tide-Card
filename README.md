@@ -1,6 +1,8 @@
 # Tide-Card
 Lovelace Tide Card and script to retrieve tide levels
 
+![Example tide chart](https://github.com/jchasey/Tide-Card/raw/master/tide-card.png)
+
 Before you can display the tide levels we need to retrieve the data. This script accesses the National Tidal and Sea Level Facility in the UK to grab the data.
 The data is available for a number of locations around the UK, so it is a case of finding the closest station and adjusting the URL in the script.
 
