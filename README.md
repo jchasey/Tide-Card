@@ -12,7 +12,7 @@ Will access the data for Newln in Cornwall, the full list of locations is at `ht
 
 The script can just be run on the console and outputs the data in JSON format, for example:
 
-`{
+```{
     "FirstHighTide": "01:50",
     "PeakHeights": [
         4.44,
@@ -34,8 +34,23 @@ The script can just be run on the console and outputs the data in JSON format, f
         "2019-03-03 15:14:00",
         "2019-03-03 21:52:00"
     ]
-}`
+}
+```
 
 The data is collected for the current day and tomorrow. Depending on the tide cycle this is usually 7 or 8 peak (either low or high) heights over the next 48 hours.
+
+The next step is to get this data into Home Assistant, for which I use a command line sensor as follows:
+
+```
+sensor:
+  - platform: command_line
+    name: 'FirstHighTide'
+    command: 'python3 /config/tide_scrape.py'
+    scan_interval: 14400            # Scrape every 4 hours
+    value_template: '{{ value_json.FirstHighTide }}'
+    json_attributes:
+      - PeakTimes
+      - PeakHeights
+```
 
 
